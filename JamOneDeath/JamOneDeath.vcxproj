@@ -145,7 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="JamOneDeath.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoList.h" />
+    <ClInclude Include="EventBase.h" />
+    <ClInclude Include="EventHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

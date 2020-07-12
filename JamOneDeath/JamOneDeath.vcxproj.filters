@@ -13,10 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{8df0c5ed-e0ab-4b76-82a6-4bc3c8157ec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{528d7a86-9bef-4fcd-af4d-2074d74b4c68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JamOneDeath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AutoList.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBase.h">
+      <Filter>Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
