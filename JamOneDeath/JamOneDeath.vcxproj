@@ -145,26 +145,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BehaviorSystem.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="JamOneDeath.cpp" />
+    <ClCompile Include="LogicBase.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sim.cpp" />
+    <ClCompile Include="TestLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoList.h" />
+    <ClInclude Include="BehaviorComponent.h" />
+    <ClInclude Include="BehaviorSystem.h" />
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="LogicBase.h" />
     <ClInclude Include="ISystem.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Sim.h" />
     <ClInclude Include="Systems.h" />
+    <ClInclude Include="TestLogic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

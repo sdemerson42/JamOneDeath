@@ -40,5 +40,6 @@ void Sim::execute()
 
 void Sim::createSystems()
 {
+	m_systems.push_back(std::make_unique<BehaviorSystem>());
 	m_systems.push_back(std::make_unique<RenderSystem>(&m_window));
 }

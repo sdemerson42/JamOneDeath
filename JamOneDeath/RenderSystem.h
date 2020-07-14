@@ -4,8 +4,9 @@
 #include "SFML/Graphics.hpp"
 #include <map>
 #include <string>
+#include "EventHandler.h"
 
-class RenderSystem : public ISystem
+class RenderSystem : public ISystem, public EventHandler
 {
 public:
 	RenderSystem(sf::RenderWindow* window);

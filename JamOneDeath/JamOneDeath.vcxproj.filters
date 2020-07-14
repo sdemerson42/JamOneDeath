@@ -25,6 +25,9 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{0b0c756c-e62a-4139-aa55-380d21e2ddfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Logic">
+      <UniqueIdentifier>{23ac6c9c-af32-490c-99e4-ae745ad0f994}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JamOneDeath.cpp">
@@ -44,6 +47,15 @@
     </ClCompile>
     <ClCompile Include="RenderSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLogic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LogicBase.cpp">
+      <Filter>Logic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +94,18 @@
     </ClInclude>
     <ClInclude Include="Systems.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLogic.h">
+      <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="LogicBase.h">
+      <Filter>Logic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
