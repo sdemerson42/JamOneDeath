@@ -1,21 +1,54 @@
 #include "RenderSystem.h"
 #include "RenderComponent.h"
 #include "Entity.h"
-
+#include "Globals.h"
 
 RenderSystem::RenderSystem(sf::RenderWindow* window) :
 	m_window{ window }
 {
+	m_tileTexture.loadFromFile("GFX/Test.png");
+	registerFunc(this, &RenderSystem::onSetTilemapEvent);
 }
 
 void RenderSystem::execute()
 {
+	m_window->clear(sf::Color::Black);
+	renderTilemap();
 	renderEntities();
+}
+
+void RenderSystem::renderTilemap()
+{
+	sf::VertexArray va{ sf::PrimitiveType::Quads };
+	sf::RenderStates states{ &m_tileTexture };
+
+	int xSize = m_tilemapEvent.tilemap->size();
+	int ySize = (*m_tilemapEvent.tilemap)[0].size();
+
+	for (int i = 0; i < xSize; ++i)
+	{
+		for (int j = 0; j < ySize; ++j)
+		{
+			float xPos = (float)(i * Globals::tileWidth);
+			float yPos = (float)(j * Globals::tileHeight);
+			float txPos = (float)((*m_tilemapEvent.tilemap)[i][j] * Globals::tileWidth);
+			float tyPos = 0.0f;
+
+			va.append(sf::Vertex{ sf::Vector2f{xPos, yPos}, 
+				sf::Vector2f{txPos, tyPos } });
+			va.append(sf::Vertex{ sf::Vector2f{xPos + Globals::tileWidth, yPos},
+				sf::Vector2f{txPos + Globals::tilemapWidth, tyPos } });
+			va.append(sf::Vertex{ sf::Vector2f{xPos + Globals::tileWidth, yPos + Globals::tileHeight},
+				sf::Vector2f{txPos + Globals::tilemapWidth, tyPos + Globals::tileHeight } });
+			va.append(sf::Vertex{ sf::Vector2f{xPos, yPos + Globals::tileHeight},
+				sf::Vector2f{txPos, tyPos + Globals::tileHeight } });
+		}
+	}
+	m_window->draw(va, states);
 }
 
 void RenderSystem::renderEntities()
 {
-	m_window->clear(sf::Color::Black);
 	std::map<std::string, sf::VertexArray> dvaMap;
 	auto size = AutoList<RenderComponent>::size();
 
@@ -76,4 +109,9 @@ bool RenderSystem::processTexturePath(const std::string& path)
 		return true;
 	}
 	return false;
+}
+
+void RenderSystem::onSetTilemapEvent(const SetTilemapEvent* event)
+{
+	m_tilemapEvent = *event;
 }

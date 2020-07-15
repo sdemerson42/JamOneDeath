@@ -164,6 +164,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Events.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="LogicBase.h" />
     <ClInclude Include="ISystem.h" />

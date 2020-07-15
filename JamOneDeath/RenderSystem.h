@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include "EventHandler.h"
+#include "Events.h"
 
 class RenderSystem : public ISystem, public EventHandler
 {
@@ -14,7 +15,12 @@ public:
 private:
 	sf::RenderWindow* m_window;
 	std::map<std::string, sf::Texture> m_textureMap;
+	sf::Texture m_tileTexture;
+	SetTilemapEvent m_tilemapEvent;
 
+	void renderTilemap();
 	void renderEntities();
 	bool processTexturePath(const std::string& path);
+
+	void onSetTilemapEvent(const SetTilemapEvent* event);
 };

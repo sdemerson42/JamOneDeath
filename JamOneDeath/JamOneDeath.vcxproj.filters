@@ -51,10 +51,10 @@
     <ClCompile Include="BehaviorSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="TestLogic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LogicBase.cpp">
+      <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLogic.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="LogicBase.h">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Events.h">
+      <Filter>Events</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
