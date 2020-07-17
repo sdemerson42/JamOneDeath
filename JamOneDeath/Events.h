@@ -8,3 +8,9 @@ struct SetTilemapEvent : public EventBase
 	std::vector<std::vector<int>>* tilemap;
 	std::vector<int>* blockedTiles;
 };
+
+struct InputEvent : public EventBase
+{
+	float moveX;
+	float moveY;
+};

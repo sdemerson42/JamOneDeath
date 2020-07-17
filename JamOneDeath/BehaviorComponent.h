@@ -5,6 +5,7 @@
 #include "AutoList.h"
 #include <memory>
 #include "LogicBase.h"
+#include "Events.h"
 
 class BehaviorComponent : public ComponentBase, public EventHandler, 
 	public AutoList<BehaviorComponent>

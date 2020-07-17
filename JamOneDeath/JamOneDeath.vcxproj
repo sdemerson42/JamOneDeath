@@ -149,9 +149,11 @@
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="JamOneDeath.cpp" />
     <ClCompile Include="LogicBase.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
+    <ClCompile Include="PlayerLogic.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sim.cpp" />
     <ClCompile Include="TestLogic.cpp" />
@@ -167,10 +169,12 @@
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="InputSystem.h" />
     <ClInclude Include="LogicBase.h" />
     <ClInclude Include="ISystem.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsSystem.h" />
+    <ClInclude Include="PlayerLogic.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Sim.h" />

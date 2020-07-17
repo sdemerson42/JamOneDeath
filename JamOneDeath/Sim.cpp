@@ -5,6 +5,7 @@
 #include "Events.h"
 //TEST
 #include "TestLogic.h"
+#include "PlayerLogic.h"
 // END TEST
 
 Sim::Sim() :
@@ -45,6 +46,7 @@ void Sim::execute()
 
 void Sim::createSystems()
 {
+	m_systems.push_back(std::make_unique<InputSystem>());
 	m_systems.push_back(std::make_unique<BehaviorSystem>());
 	m_systems.push_back(std::make_unique<PhysicsSystem>());
 	m_systems.push_back(std::make_unique<RenderSystem>(&m_window));
@@ -84,9 +86,9 @@ void Sim::buildEntities()
 	e.setPosition(200.0f, 100.0f);
 	auto rc = e.addComponent<RenderComponent>("GFX/test.png", 0.0f, 0.0f,
 		256.0f, 320.0f, 32.0f, 32.0f);
-	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 10.0f);
+	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 0.1f);
 	auto bc = e.addComponent<BehaviorComponent>();
-	bc->addLogic<TestLogic>(0.5f, 3.0f);
+	bc->addLogic<PlayerLogic>();
 
 	m_entities.push_back(std::make_unique<Entity>());
 	Entity& e2 = *m_entities.back();
