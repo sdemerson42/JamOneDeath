@@ -47,7 +47,7 @@ public:
 	template<typename T, typename ...Args>
 	auto addComponent(Args... args)
 	{
-		m_components.push_back(std::make_unique<T>(args...));
+		m_components.push_back(std::make_unique<T>(this, args...));
 		return static_cast<T*>(m_components.back().get());
 	}
 

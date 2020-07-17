@@ -14,10 +14,10 @@ public:
 		ComponentBase{ parent }
 	{
 	}
-	template<typename T>
-	void addLogic()
+	template<typename T, typename ...Args>
+	void addLogic(Args ...args)
 	{
-		m_logic = std::make_unique<T>(this);
+		m_logic = std::make_unique<T>(this, args...);
 	}
 	LogicBase* logic()
 	{
