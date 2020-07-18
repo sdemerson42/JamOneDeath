@@ -6,6 +6,7 @@
 
 class BehaviorComponent;
 class PhysicsComponent;
+class AnimationComponent;
 
 class PlayerLogic : public LogicBase, public EventHandler
 {
@@ -16,4 +17,5 @@ public:
 private:
 	static InputEvent s_input;
 	PhysicsComponent* m_physics;
+	AnimationComponent* m_animation;
 };

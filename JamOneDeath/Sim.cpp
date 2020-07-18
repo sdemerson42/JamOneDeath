@@ -93,8 +93,6 @@ void Sim::buildEntities()
 	auto rc = e.addComponent<RenderComponent>("GFX/test.png", 0.0f, 0.0f,
 		256.0f, 320.0f, 32.0f, 32.0f);
 	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 1.0f);
-	auto bc = e.addComponent<BehaviorComponent>();
-	bc->addLogic<PlayerLogic>();
 	auto ac = e.addComponent<AnimationComponent>();
 	ac->addAnimation("main", std::vector<sf::Vector2f>{
 		sf::Vector2f{ 256.0f, 320.0f },
@@ -102,7 +100,12 @@ void Sim::buildEntities()
 			sf::Vector2f{ 320.0f, 320.0f },
 			sf::Vector2f{ 352.0f, 320.0f }},
 		6);
-	ac->playAnimation("main", true);
+	ac->addAnimation("idle", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 256.0f, 320.0f } },
+		1);
+
+	auto bc = e.addComponent<BehaviorComponent>();
+	bc->addLogic<PlayerLogic>();
 	
 
 	m_entities.push_back(std::make_unique<Entity>());

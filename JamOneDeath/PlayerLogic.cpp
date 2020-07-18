@@ -3,11 +3,13 @@
 #include "Events.h"
 #include "Entity.h"
 #include "PhysicsComponent.h"
+#include "AnimationComponent.h"
 
 InputEvent PlayerLogic::s_input;
 
 PlayerLogic::PlayerLogic(BehaviorComponent* parent) :
-	LogicBase{ parent }, m_physics{ parent->parent()->getComponent<PhysicsComponent>() }
+	LogicBase{ parent }, m_physics{ parent->parent()->getComponent<PhysicsComponent>() },
+	m_animation{ parent->parent()->getComponent<AnimationComponent>() }
 {
 }
 
@@ -28,6 +30,15 @@ void PlayerLogic::execute()
 	if (y < -1.0f * speed) y = -1.0f * speed;
 
 	m_physics->setVelocity(x, y);
+
+	if (s_input.moveX == 0.0f && s_input.moveY == 0.0f)
+	{
+		m_animation->playAnimation("idle", false);
+	}
+	else
+	{
+		m_animation->playAnimation("main", true);
+	}
 }
 
 void PlayerLogic::setInput(const InputEvent& event)

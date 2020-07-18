@@ -45,8 +45,11 @@ public:
 				return anim.name == name;
 			});
 		if (animIter == std::end(m_animations)) return;
+		
+		auto diff = animIter - std::begin(m_animations);
+		if (m_currentAnimation == diff) return;
 
-		m_currentAnimation = animIter - std::begin(m_animations);
+		m_currentAnimation = diff;
 		m_timer = 0;
 		m_currentFrame = 0;
 		m_looping = isLooping;
