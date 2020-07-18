@@ -6,7 +6,7 @@
 RenderSystem::RenderSystem(sf::RenderWindow* window) :
 	m_window{ window }
 {
-	m_tileTexture.loadFromFile("GFX/Test.png");
+	m_tileTexture.loadFromFile("GFX/Tiles.png");
 	registerFunc(this, &RenderSystem::onSetTilemapEvent);
 }
 
@@ -37,9 +37,9 @@ void RenderSystem::renderTilemap()
 			va.append(sf::Vertex{ sf::Vector2f{xPos, yPos}, 
 				sf::Vector2f{txPos, tyPos } });
 			va.append(sf::Vertex{ sf::Vector2f{xPos + Globals::tileWidth, yPos},
-				sf::Vector2f{txPos + Globals::tilemapWidth, tyPos } });
+				sf::Vector2f{txPos + Globals::tileWidth, tyPos } });
 			va.append(sf::Vertex{ sf::Vector2f{xPos + Globals::tileWidth, yPos + Globals::tileHeight},
-				sf::Vector2f{txPos + Globals::tilemapWidth, tyPos + Globals::tileHeight } });
+				sf::Vector2f{txPos + Globals::tileWidth, tyPos + Globals::tileHeight } });
 			va.append(sf::Vertex{ sf::Vector2f{xPos, yPos + Globals::tileHeight},
 				sf::Vector2f{txPos, tyPos + Globals::tileHeight } });
 		}

@@ -151,6 +151,7 @@
     <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="GhostLogic.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="JamOneDeath.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Events.h" />
+    <ClInclude Include="GhostLogic.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ILogger.h" />
     <ClInclude Include="InputSystem.h" />

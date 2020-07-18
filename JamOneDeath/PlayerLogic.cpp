@@ -9,7 +9,8 @@ InputEvent PlayerLogic::s_input;
 
 PlayerLogic::PlayerLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }, m_physics{ parent->parent()->getComponent<PhysicsComponent>() },
-	m_animation{ parent->parent()->getComponent<AnimationComponent>() }
+	m_animation{ parent->parent()->getComponent<AnimationComponent>() },
+	m_renders{ parent->parent()->getComponents<RenderComponent>() }
 {
 }
 
@@ -38,6 +39,15 @@ void PlayerLogic::execute()
 	else
 	{
 		m_animation->playAnimation("main", true);
+	}
+
+	// Hats
+
+	if (s_input.e == 1)
+	{
+		m_hatIndex = ++m_hatIndex % 3;
+		float xPos = (float)m_hatIndex * 128.0f;
+		m_renders[1]->setTextureOffset(xPos, 128.0f);
 	}
 }
 

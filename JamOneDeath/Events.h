@@ -13,4 +13,5 @@ struct InputEvent : public EventBase
 {
 	float moveX;
 	float moveY;
+	int e = 0;
 };

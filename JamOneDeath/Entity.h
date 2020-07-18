@@ -70,6 +70,21 @@ public:
 		return nullptr;
 	}
 
+	template<typename T>
+	std::vector<T*> getComponents()
+	{
+		auto desiredType = std::type_index{ typeid(T) };
+		std::vector<T*> r;
+		for (const auto& up : m_components)
+		{
+			if (std::type_index{ typeid(*up.get()) } == desiredType)
+			{
+				r.push_back(static_cast<T*>(up.get()));
+			}
+		}
+		return r;
+	}
+
 
 private:
 	unsigned int m_guid;

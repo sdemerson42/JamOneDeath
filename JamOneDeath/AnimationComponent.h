@@ -39,6 +39,9 @@ public:
 
 	void playAnimation(const std::string& name, bool isLooping)
 	{
+		if (m_currentAnimation != -1 &&
+			m_animations[m_currentAnimation].name == name) return;
+
 		auto animIter = std::find_if(std::begin(m_animations),
 			std::end(m_animations), [&](const Animation& anim)
 			{
@@ -47,7 +50,6 @@ public:
 		if (animIter == std::end(m_animations)) return;
 		
 		auto diff = animIter - std::begin(m_animations);
-		if (m_currentAnimation == diff) return;
 
 		m_currentAnimation = diff;
 		m_timer = 0;
