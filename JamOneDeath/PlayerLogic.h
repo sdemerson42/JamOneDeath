@@ -14,6 +14,6 @@ public:
 	void execute() override;
 	static void setInput(const InputEvent& event);
 private:
-	static InputEvent m_input;
+	static InputEvent s_input;
 	PhysicsComponent* m_physics;
 };

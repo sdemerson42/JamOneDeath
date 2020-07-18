@@ -28,6 +28,9 @@
     <Filter Include="Logic">
       <UniqueIdentifier>{23ac6c9c-af32-490c-99e4-ae745ad0f994}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Loggers">
+      <UniqueIdentifier>{86272e29-ad32-46e0-9a6d-65aff683f02e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JamOneDeath.cpp">
@@ -65,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="PlayerLogic.cpp">
       <Filter>Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLogger.cpp">
+      <Filter>Loggers</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Loggers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="PlayerLogic.h">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="ILogger.h">
+      <Filter>Loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLogger.h">
+      <Filter>Loggers</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Loggers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

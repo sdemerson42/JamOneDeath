@@ -3,6 +3,8 @@
 #include "Components.h"
 #include "Systems.h"
 #include "Events.h"
+#include "Logger.h"
+
 //TEST
 #include "TestLogic.h"
 #include "PlayerLogic.h"
@@ -18,6 +20,8 @@ Sim::Sim() :
 
 void Sim::execute()
 {
+	Logger::log("Begin Sim execution.");
+
 	sf::Clock clock;
 	const float frameTime = 1000.0f / 60.0f;
 
@@ -42,6 +46,7 @@ void Sim::execute()
 			clock.restart();
 		}
 	}
+	Logger::log("Exiting Sim main loop.");
 }
 
 void Sim::createSystems()
@@ -86,7 +91,7 @@ void Sim::buildEntities()
 	e.setPosition(200.0f, 100.0f);
 	auto rc = e.addComponent<RenderComponent>("GFX/test.png", 0.0f, 0.0f,
 		256.0f, 320.0f, 32.0f, 32.0f);
-	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 0.1f);
+	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 1.0f);
 	auto bc = e.addComponent<BehaviorComponent>();
 	bc->addLogic<PlayerLogic>();
 
@@ -95,7 +100,7 @@ void Sim::buildEntities()
 	e2.setPosition(400.0f, 500.0f);
 	auto rc2 = e2.addComponent<RenderComponent>("GFX/test.png", 0.0f, 0.0f,
 		0.0f, 320.0f, 32.0f, 32.0f);
-	auto pc2 = e2.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 5.0f);
+	auto pc2 = e2.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 1.0f);
 	auto bc2 = e2.addComponent<BehaviorComponent>();
 	bc2->addLogic<TestLogic>(-2.8f, -2.7f);
 
@@ -104,7 +109,7 @@ void Sim::buildEntities()
 	e3.setPosition(700.0f, 300.0f);
 	auto rc3 = e3.addComponent<RenderComponent>("GFX/test.png", 0.0f, 0.0f,
 		0.0f, 320.0f, 32.0f, 32.0f);
-	auto pc3 = e3.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 2.0f);
+	auto pc3 = e3.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 1.0f);
 	auto bc3 = e3.addComponent<BehaviorComponent>();
 	bc3->addLogic<TestLogic>(-5.0f, 0.0f);
 	// END TEST

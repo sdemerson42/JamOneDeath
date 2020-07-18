@@ -4,7 +4,7 @@
 #include "Entity.h"
 #include "PhysicsComponent.h"
 
-InputEvent PlayerLogic::m_input;
+InputEvent PlayerLogic::s_input;
 
 PlayerLogic::PlayerLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }, m_physics{ parent->parent()->getComponent<PhysicsComponent>() }
@@ -19,11 +19,11 @@ void PlayerLogic::execute()
 
 	auto velocity = m_physics->velocity();
 	
-	float x = velocity.x + acceleration * m_input.moveX;
+	float x = velocity.x + acceleration * s_input.moveX;
 	if (x > speed) x = speed;
 	if (x < -1.0f * speed) x = -1.0f * speed;
 
-	float y = velocity.y + acceleration * m_input.moveY;
+	float y = velocity.y + acceleration * s_input.moveY;
 	if (y > speed) y = speed;
 	if (y < -1.0f * speed) y = -1.0f * speed;
 
@@ -32,5 +32,5 @@ void PlayerLogic::execute()
 
 void PlayerLogic::setInput(const InputEvent& event)
 {
-	m_input = event;
+	s_input = event;
 }

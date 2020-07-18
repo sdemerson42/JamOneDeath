@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Globals.h"
 #include <algorithm>
+#include "Logger.h"
 
 PhysicsSystem::PhysicsSystem()
 {
@@ -28,25 +29,35 @@ void PhysicsSystem::resolveEntityCollisions()
 			
 			if (detectCollision(&c))
 			{
-				// Resolve collision by changing velocities of colliding objects.
-				
-				// Restitution will be 1.0f by default.
-				const float e = 1.0f;
+				if (c.a->solid() && c.b->solid())
+				{
+					// Resolve collision by changing velocities of colliding objects.
 
-				auto relativeVelocity = c.b->velocity() - c.a->velocity();
-				float rvAlongNormal = relativeVelocity.x * c.normal.x +
-					relativeVelocity.y * c.normal.y;
-				
-				float impulseMagnitude = (-1.0f * (e + 1.0f) * rvAlongNormal) /
-					(c.a->inverseMass() + c.b->inverseMass());
+					// Restitution will be 1.0f by default.
+					const float e = 1.0f;
 
-				auto av = c.a->velocity();
-				auto bv = c.b->velocity();
+					auto relativeVelocity = c.b->velocity() - c.a->velocity();
+					float rvAlongNormal = relativeVelocity.x * c.normal.x +
+						relativeVelocity.y * c.normal.y;
 
-				auto apv = av - (impulseMagnitude * c.normal) / c.a->mass();
-				c.a->setVelocity(apv.x, apv.y);
-				auto bpv = bv + (impulseMagnitude * c.normal) / c.b->mass();
-				c.b->setVelocity(bpv.x, bpv.y);
+					// Only resolve physical collision if in a collision vector
+
+					if (rvAlongNormal < 0.0f)
+					{
+						float impulseMagnitude = (-1.0f * (e + 1.0f) * rvAlongNormal) /
+							(c.a->inverseMass() + c.b->inverseMass());
+
+						auto av = c.a->velocity();
+						auto bv = c.b->velocity();
+
+						auto apv = av - (impulseMagnitude * c.normal) / c.a->mass();
+						c.a->setVelocity(apv.x, apv.y);
+						auto bpv = bv + (impulseMagnitude * c.normal) / c.b->mass();
+						c.b->setVelocity(bpv.x, bpv.y);
+					}
+				}
+				// To-do: Inform behaviors of collision (occurs regardless of
+				// solidity of colliding objects)
 			}
 		}
 	}

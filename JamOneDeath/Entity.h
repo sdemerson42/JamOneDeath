@@ -11,6 +11,7 @@
 class Entity
 {
 public:
+	Entity();
 	bool active()
 	{
 		return m_active;
@@ -18,6 +19,10 @@ public:
 	void setActive(bool value)
 	{
 		m_active = value;
+	}
+	unsigned int guid()
+	{
+		return m_guid;
 	}
 	const sf::Vector2f& position()
 	{
@@ -67,8 +72,10 @@ public:
 
 
 private:
+	unsigned int m_guid;
 	bool m_active;
 	sf::Vector2f m_position;
 	std::vector<std::unique_ptr<ComponentBase>> m_components;
-	
+
+	static unsigned int s_guidCounter;
 };
