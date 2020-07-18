@@ -4,3 +4,4 @@
 #include "BehaviorSystem.h"
 #include "PhysicsSystem.h"
 #include "InputSystem.h"
+#include "AnimationSystem.h"

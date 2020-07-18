@@ -53,6 +53,7 @@ void Sim::createSystems()
 {
 	m_systems.push_back(std::make_unique<InputSystem>());
 	m_systems.push_back(std::make_unique<BehaviorSystem>());
+	m_systems.push_back(std::make_unique<AnimationSystem>());
 	m_systems.push_back(std::make_unique<PhysicsSystem>());
 	m_systems.push_back(std::make_unique<RenderSystem>(&m_window));
 }
@@ -94,6 +95,15 @@ void Sim::buildEntities()
 	auto pc = e.addComponent<PhysicsComponent>(true, 2.0f, 2.0f, 28.0f, 28.0f, 1.0f);
 	auto bc = e.addComponent<BehaviorComponent>();
 	bc->addLogic<PlayerLogic>();
+	auto ac = e.addComponent<AnimationComponent>();
+	ac->addAnimation("main", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 256.0f, 320.0f },
+			sf::Vector2f{ 288.0f, 320.0f },
+			sf::Vector2f{ 320.0f, 320.0f },
+			sf::Vector2f{ 352.0f, 320.0f }},
+		6);
+	ac->playAnimation("main", true);
+	
 
 	m_entities.push_back(std::make_unique<Entity>());
 	Entity& e2 = *m_entities.back();

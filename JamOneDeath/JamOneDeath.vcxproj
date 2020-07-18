@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="BehaviorSystem.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
@@ -161,6 +162,8 @@
     <ClCompile Include="TestLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="AutoList.h" />
     <ClInclude Include="BehaviorComponent.h" />
     <ClInclude Include="BehaviorSystem.h" />
