@@ -17,7 +17,7 @@ private:
 	std::vector<std::unique_ptr<ISystem>> m_systems;
 	std::vector<std::vector<int>> m_tilemap;
 	std::vector<int> m_blockedTiles;
-	std::vector<std::unique_ptr<Entity>> m_entities;
+	std::vector<std::shared_ptr<Entity>> m_entities;
 
 	void createSystems();
 	void setupScene();

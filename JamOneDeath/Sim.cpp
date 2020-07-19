@@ -88,7 +88,7 @@ void Sim::setupScene()
 void Sim::buildEntities()
 {
 	// TEST
-	m_entities.push_back(std::make_unique<Entity>());
+	m_entities.push_back(std::make_shared<Entity>());
 	Entity& e = *m_entities.back();
 	e.setPosition(200.0f, 100.0f);
 	auto rc = e.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
@@ -111,7 +111,7 @@ void Sim::buildEntities()
 	bc->addLogic<PlayerLogic>();
 	
 
-	m_entities.push_back(std::make_unique<Entity>());
+	m_entities.push_back(std::make_shared<Entity>());
 	Entity& e2 = *m_entities.back();
 	e2.setPosition(400.0f, 300.0f);
 	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,

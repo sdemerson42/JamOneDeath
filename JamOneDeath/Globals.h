@@ -2,10 +2,10 @@
 
 namespace Globals
 {
-	static const int videoWidth = 12 * 128;
-	static const int videoHeight = 8 * 128;
-	static const int tileHeight = 128;
-	static const int tileWidth = 128;
-	static const int tilemapHeight = 8;
-	static const int tilemapWidth = 12;
+	static const int videoWidth = 1280;
+	static const int videoHeight = 1024;
+	static const int tileHeight = 64;
+	static const int tileWidth = 64;
+	static const int tilemapWidth = 20;
+	static const int tilemapHeight = 16;
 };

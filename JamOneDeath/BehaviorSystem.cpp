@@ -7,6 +7,10 @@ void BehaviorSystem::execute()
 	for (int i = 0; i < size; ++i)
 	{
 		auto bc = AutoList<BehaviorComponent>::get(i);
-		bc->logic()->execute();
+		for (int i = 0; i < bc->getLogics().size(); ++i)
+		{
+			auto& sp = bc->getLogics()[i];
+			sp->execute();
+		}
 	}
 }
