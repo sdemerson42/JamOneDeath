@@ -4,6 +4,9 @@
 #include "Globals.h"
 #include <algorithm>
 #include "Logger.h"
+#include "Events.h"
+#include "BehaviorComponent.h"
+#include "LogicBase.h"
 
 PhysicsSystem::PhysicsSystem()
 {
@@ -56,8 +59,31 @@ void PhysicsSystem::resolveEntityCollisions()
 						c.b->setVelocity(bpv.x, bpv.y);
 					}
 				}
-				// To-do: Inform behaviors of collision (occurs regardless of
-				// solidity of colliding objects)
+
+				// Inform Logics of collision if they exist
+				auto abc = c.a->parent()->getComponent<BehaviorComponent>();
+				if (abc)
+				{
+					auto alogics = abc->getLogics();
+					for (auto& sp : alogics)
+					{
+						CollisionEvent ce;
+						ce.collider = c.b->parent();
+						sp->onCollision(ce);
+					}
+				}
+
+				auto bbc = c.b->parent()->getComponent<BehaviorComponent>();
+				if (bbc)
+				{
+					auto blogics = bbc->getLogics();
+					for (auto& sp : blogics)
+					{
+						CollisionEvent ce;
+						ce.collider = c.a->parent();
+						sp->onCollision(ce);
+					}
+				}
 			}
 		}
 	}

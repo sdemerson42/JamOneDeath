@@ -2,6 +2,7 @@
 #include "BehaviorComponent.h"
 #include "PhysicsComponent.h"
 #include "Entity.h"
+#include "Logger.h"
 
 GhostLogic::GhostLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }
@@ -15,5 +16,13 @@ void GhostLogic::execute()
 		auto pc = parent()->parent()->getComponent<PhysicsComponent>();
 		pc->setVelocity((float)(rand() % 7 - 3),
 			(float)(rand() % 7 - 3));
+	}
+}
+
+void GhostLogic::onCollision(const CollisionEvent& collision)
+{
+	if (collision.collider->hasTag("Natty"))
+	{
+		Logger::log("Natty hit me!");
 	}
 }

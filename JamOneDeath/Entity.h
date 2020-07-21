@@ -4,6 +4,7 @@
 #include <memory>
 #include <algorithm>
 #include <typeindex>
+#include <string>
 
 #include "ComponentBase.h"
 #include "SFML/System.hpp"
@@ -45,6 +46,16 @@ public:
 	void addPosition(const sf::Vector2f& position)
 	{
 		m_position += position;
+	}
+	void addTag(const std::string& tag)
+	{
+		m_tags.push_back(tag);
+	}
+	bool hasTag(const std::string& tag)
+	{
+		auto result = std::find(std::begin(m_tags), std::end(m_tags),
+			tag);
+		return result != std::end(m_tags);
 	}
 
 	//Components
@@ -91,6 +102,7 @@ private:
 	bool m_active;
 	sf::Vector2f m_position;
 	std::vector<std::unique_ptr<ComponentBase>> m_components;
+	std::vector<std::string> m_tags;
 
 	static unsigned int s_guidCounter;
 };

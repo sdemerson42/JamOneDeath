@@ -109,6 +109,7 @@ void Sim::buildEntities()
 
 	auto bc = e.addComponent<BehaviorComponent>();
 	bc->addLogic<PlayerLogic>();
+	e.addTag("Natty");
 	
 
 	m_entities.push_back(std::make_shared<Entity>());
