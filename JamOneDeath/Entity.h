@@ -96,6 +96,14 @@ public:
 		return r;
 	}
 
+	void activateComponents()
+	{
+		for (auto& cb : m_components)
+		{
+			cb->setActive(true);
+		}
+	}
+
 
 private:
 	unsigned int m_guid;

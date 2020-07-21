@@ -22,13 +22,15 @@ void PhysicsSystem::execute()
 void PhysicsSystem::resolveEntityCollisions()
 {
 	auto size = AutoList<PhysicsComponent>::size();
+	Collision c;
 	for (int i = 0; i < size; ++i)
 	{
+		c.a = AutoList<PhysicsComponent>::get(i);
+		if (!c.a->active()) continue;
 		for (int j = i + 1; j < size; ++j)
 		{
-			Collision c;
-			c.a = AutoList<PhysicsComponent>::get(i);
 			c.b = AutoList<PhysicsComponent>::get(j);
+			if (!c.b->active()) continue;
 			
 			if (detectCollision(&c))
 			{

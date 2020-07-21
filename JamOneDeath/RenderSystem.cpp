@@ -55,6 +55,7 @@ void RenderSystem::renderEntities()
 	for (int i = 0; i < size; ++i)
 	{
 		auto rc = AutoList<RenderComponent>::get(i);
+		if (!rc->active()) continue;
 
 		auto path = rc->texturePath();
 		auto parentPosition = rc->parent()->position();

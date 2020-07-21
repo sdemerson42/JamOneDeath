@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "PhysicsComponent.h"
 #include "AnimationComponent.h"
+#include "SpawnSystem.h"
 
 InputEvent PlayerLogic::s_input;
 
@@ -48,6 +49,7 @@ void PlayerLogic::execute()
 		m_hatIndex = ++m_hatIndex % 3;
 		float xPos = (float)m_hatIndex * 128.0f;
 		m_renders[1]->setTextureOffset(xPos, 128.0f);
+		SpawnSystem::buildEntity("Ghost", 400.0f, 300.0f);
 	}
 }
 

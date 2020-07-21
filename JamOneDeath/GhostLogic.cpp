@@ -3,6 +3,7 @@
 #include "PhysicsComponent.h"
 #include "Entity.h"
 #include "Logger.h"
+#include "SpawnSystem.h"
 
 GhostLogic::GhostLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }
@@ -23,6 +24,7 @@ void GhostLogic::onCollision(const CollisionEvent& collision)
 {
 	if (collision.collider->hasTag("Natty"))
 	{
-		Logger::log("Natty hit me!");
+		Logger::log("Natty KILLED me!");
+		SpawnSystem::destroyEntity(parent()->parent()->guid());
 	}
 }

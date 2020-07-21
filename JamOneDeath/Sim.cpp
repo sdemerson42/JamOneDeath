@@ -5,12 +5,6 @@
 #include "Events.h"
 #include "Logger.h"
 
-//TEST
-#include "TestLogic.h"
-#include "PlayerLogic.h"
-#include "GhostLogic.h"
-// END TEST
-
 Sim::Sim() :
 	m_window{ sf::VideoMode{Globals::videoWidth, Globals::videoHeight}, "Jam One" }
 {
@@ -52,6 +46,7 @@ void Sim::execute()
 
 void Sim::createSystems()
 {
+	m_systems.push_back(std::make_unique<SpawnSystem>(&m_entities));
 	m_systems.push_back(std::make_unique<InputSystem>());
 	m_systems.push_back(std::make_unique<BehaviorSystem>());
 	m_systems.push_back(std::make_unique<AnimationSystem>());
@@ -88,46 +83,8 @@ void Sim::setupScene()
 void Sim::buildEntities()
 {
 	// TEST
-	m_entities.push_back(std::make_shared<Entity>());
-	Entity& e = *m_entities.back();
-	e.setPosition(200.0f, 100.0f);
-	auto rc = e.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
-		0.0f, 0.0f, 128.0f, 128.0f);
-	rc = e.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
-		0.0f, 128.0f, 128.0f, 128.0f);
-	auto pc = e.addComponent<PhysicsComponent>(true, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
-	auto ac = e.addComponent<AnimationComponent>();
-	ac->addAnimation("main", std::vector<sf::Vector2f>{
-		sf::Vector2f{ 0.0f, 0.0f },
-			sf::Vector2f{ 128.0f, 0.0f },
-			sf::Vector2f{ 0.0f, 0.0f },
-			sf::Vector2f{ 256.0f, 0.0f }},
-		9);
-	ac->addAnimation("idle", std::vector<sf::Vector2f>{
-		sf::Vector2f{ 0.0f, 0.0f } },
-		1);
 
-	auto bc = e.addComponent<BehaviorComponent>();
-	bc->addLogic<PlayerLogic>();
-	e.addTag("Natty");
+	SpawnSystem::buildEntity("Natty", 100.0f, 200.0f);
 	
-
-	m_entities.push_back(std::make_shared<Entity>());
-	Entity& e2 = *m_entities.back();
-	e2.setPosition(400.0f, 300.0f);
-	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
-		0.0f, 256.0f, 128.0f, 128.0f);
-	auto pc2 = e2.addComponent<PhysicsComponent>(true, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
-	auto bc2 = e2.addComponent<BehaviorComponent>();
-	bc2->addLogic<GhostLogic>();
-	auto ac2 = e2.addComponent<AnimationComponent>();
-	ac2->addAnimation("main", std::vector<sf::Vector2f>{
-		sf::Vector2f{ 0.0f, 256.0f },
-			sf::Vector2f{ 128.0f, 256.0f },
-			sf::Vector2f{ 0.0f, 256.0f },
-			sf::Vector2f{ 256.0f, 256.0f }},
-		6);
-	ac2->playAnimation("main", true);
-
 	// END TEST
 }

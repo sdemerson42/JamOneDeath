@@ -161,6 +161,7 @@
     <ClCompile Include="PlayerLogic.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sim.cpp" />
+    <ClCompile Include="SpawnSystem.cpp" />
     <ClCompile Include="TestLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Sim.h" />
+    <ClInclude Include="SpawnSystem.h" />
     <ClInclude Include="Systems.h" />
     <ClInclude Include="TestLogic.h" />
   </ItemGroup>

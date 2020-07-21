@@ -2,7 +2,7 @@
 #include "Entity.h"
 
 ComponentBase::ComponentBase(Entity* parent) :
-	m_parent{ parent }, m_active{ true }
+	m_parent{ parent }, m_active{ false }
 {}
 
 Entity* ComponentBase::parent()

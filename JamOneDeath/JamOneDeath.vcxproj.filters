@@ -84,6 +84,9 @@
     <ClCompile Include="DuckShootLogic.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
+    <ClCompile Include="SpawnSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoList.h">
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="DuckShootLogic.h">
       <Filter>Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
