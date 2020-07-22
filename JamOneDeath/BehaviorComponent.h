@@ -23,6 +23,12 @@ public:
 	{
 		m_logics.push_back(std::make_shared<T>(this, args...));
 	}
+
+	void addLogicCopy(LogicBase* copy)
+	{
+		m_logics.push_back(std::shared_ptr<LogicBase>(copy));
+	}
+
 	const std::vector<std::shared_ptr<LogicBase>>& getLogics()
 	{
 		return m_logics;
@@ -48,7 +54,16 @@ public:
 	{
 		return m_counters[name];
 	}
+	static void setInput(const InputEvent& event)
+	{
+		s_input = event;
+	}
+	static const InputEvent& input()
+	{
+		return s_input;
+	}
 private:
 	std::vector<std::shared_ptr<LogicBase>> m_logics;
 	std::map<std::string, int> m_counters;
+	static InputEvent s_input;
 };

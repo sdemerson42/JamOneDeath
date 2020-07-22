@@ -66,6 +66,7 @@ void Sim::setupScene()
 			int val = 0;
 			if (j == 0 || j == Globals::tilemapHeight - 1 ||
 				i == 0 || i == Globals::tilemapWidth - 1) val = 1;
+			if (j == Globals::tilemapHeight / 2) val = 1;
 			m_tilemap[i].push_back(val);
 		}
 	}
@@ -85,6 +86,7 @@ void Sim::buildEntities()
 	// TEST
 
 	SpawnSystem::buildEntity("Natty", 100.0f, 200.0f);
+	SpawnSystem::buildEntity("Ghost", 400.0f, 300.0f);
 	
 	// END TEST
 }

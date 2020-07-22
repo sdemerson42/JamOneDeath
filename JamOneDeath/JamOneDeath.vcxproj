@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationSystem.cpp" />
+    <ClCompile Include="BehaviorComponent.cpp" />
     <ClCompile Include="BehaviorSystem.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />

@@ -11,9 +11,24 @@ public:
 	{
 		// No default behavior
 	}
+	virtual void playerOpen()
+	{
+		// No default behavior
+
+	}
+	virtual void playerClose()
+	{
+		// No default behavior
+
+	}
+	virtual LogicBase* getLogicCopy()
+	{
+		return nullptr;
+	}
+	BehaviorComponent* parent();
+	void setParent(BehaviorComponent* parent);
 protected:
 	LogicBase(BehaviorComponent* parent);
-	BehaviorComponent* parent();
 private:
 	BehaviorComponent* m_parent;
 };

@@ -81,6 +81,9 @@
     <ClCompile Include="SpawnSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="BehaviorComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutoList.h">

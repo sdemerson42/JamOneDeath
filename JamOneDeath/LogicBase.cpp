@@ -9,3 +9,8 @@ BehaviorComponent* LogicBase::parent()
 {
 	return m_parent;
 }
+
+void LogicBase::setParent(BehaviorComponent* parent)
+{
+	m_parent = parent;
+}

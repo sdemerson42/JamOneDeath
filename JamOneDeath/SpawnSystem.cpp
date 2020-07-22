@@ -54,10 +54,22 @@ void SpawnSystem::buildNatty(float xPos, float yPos)
 	ac->addAnimation("idle", std::vector<sf::Vector2f>{
 		sf::Vector2f{ 0.0f, 0.0f } },
 		1);
+	ac->addAnimation("poof", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 0.0f, 512.0f },
+			sf::Vector2f{ 128.0f, 512.0f },
+			sf::Vector2f{ 256.0f, 512.0f },
+			sf::Vector2f{ 384.0f, 512.0f }},
+		6);
+	ac->addAnimation("rpoof", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 384.0f, 512.0f },
+			sf::Vector2f{ 256.0f, 512.0f },
+			sf::Vector2f{ 128.0f, 512.0f },
+			sf::Vector2f{ 0.0f, 512.0f }},
+		6);
 
 	auto bc = e.addComponent<BehaviorComponent>();
 	bc->addLogic<PlayerLogic>();
-	e.addTag("Natty");
+	e.addTag("player");
 }
 
 void SpawnSystem::buildGhost(float posX, float posY)
@@ -78,4 +90,7 @@ void SpawnSystem::buildGhost(float posX, float posY)
 			sf::Vector2f{ 256.0f, 256.0f }},
 		6);
 	ac2->playAnimation("main", true);
+
+	e2.addTag("mob");
+	e2.addTag("ghost");
 }

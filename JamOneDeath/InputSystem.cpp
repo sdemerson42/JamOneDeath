@@ -1,7 +1,7 @@
 #include "InputSystem.h"
 #include "SFML/Window.hpp"
 #include "Events.h"
-#include "PlayerLogic.h"
+#include "BehaviorComponent.h"
 
 void InputSystem::execute()
 {
@@ -24,7 +24,7 @@ void InputSystem::execute()
 	}
 	else m_input.e = 0;
 	
-	PlayerLogic::setInput(m_input);
+	BehaviorComponent::setInput(m_input);
 
 	// END TEST
 }

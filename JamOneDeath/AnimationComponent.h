@@ -28,7 +28,8 @@ public:
 	AnimationComponent(Entity* parent) :
 		ComponentBase{ parent }, m_timer{ 0 }, m_currentFrame{ 0 },
 		m_looping{ false }, m_currentAnimation{ -1 },
-		m_ac{ parent->getComponent<RenderComponent>() }
+		m_ac{ parent->getComponent<RenderComponent>() },
+		m_complete{ false }
 	{}
 
 	void addAnimation(const std::string& name, const std::vector<sf::Vector2f>& frames,
@@ -56,11 +57,18 @@ public:
 		m_currentFrame = 0;
 		m_looping = isLooping;
 		setRenderFrame(m_animations[m_currentAnimation].frames[0]);
+		m_complete = false;
 	}
 
 	void stopAnimation()
 	{
 		m_currentAnimation = -1;
+		m_complete = true;
+	}
+
+	bool complete() const
+	{
+		return m_complete;
 	}
 
 	void tick()
@@ -82,6 +90,7 @@ public:
 		if (!m_looping)
 		{
 			m_currentAnimation = -1;
+			m_complete = true;
 			return;
 		}
 
@@ -94,6 +103,7 @@ private:
 	int m_timer;
 	int m_currentFrame;
 	bool m_looping;
+	bool m_complete;
 	RenderComponent* m_ac;
 
 	void setRenderFrame(const sf::Vector2f& position)

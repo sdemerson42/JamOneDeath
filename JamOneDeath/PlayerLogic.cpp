@@ -6,13 +6,13 @@
 #include "AnimationComponent.h"
 #include "SpawnSystem.h"
 
-InputEvent PlayerLogic::s_input;
-
 PlayerLogic::PlayerLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }, m_physics{ parent->parent()->getComponent<PhysicsComponent>() },
 	m_animation{ parent->parent()->getComponent<AnimationComponent>() },
-	m_renders{ parent->parent()->getComponents<RenderComponent>() }
+	m_renders{ parent->parent()->getComponents<RenderComponent>() },
+	m_deathCounter{ 0 }
 {
+	parent->setCounter("player", 1);
 }
 
 void PlayerLogic::execute()
@@ -21,19 +21,30 @@ void PlayerLogic::execute()
 	static const float acceleration = 0.5f;
 	static const float deceleration = 0.5f;
 
+	// State controller
+
+	auto state = parent()->getCounter("state");
+	if (state == 1)
+	{
+		deathCycle();
+		return;
+	}
+
 	auto velocity = m_physics->velocity();
 	
-	float x = velocity.x + acceleration * s_input.moveX;
+	auto input = parent()->input();
+
+	float x = velocity.x + acceleration * input.moveX;
 	if (x > speed) x = speed;
 	if (x < -1.0f * speed) x = -1.0f * speed;
 
-	float y = velocity.y + acceleration * s_input.moveY;
+	float y = velocity.y + acceleration * input.moveY;
 	if (y > speed) y = speed;
 	if (y < -1.0f * speed) y = -1.0f * speed;
 
 	m_physics->setVelocity(x, y);
 
-	if (s_input.moveX == 0.0f && s_input.moveY == 0.0f)
+	if (input.moveX == 0.0f && input.moveY == 0.0f)
 	{
 		m_animation->playAnimation("idle", false);
 	}
@@ -42,18 +53,53 @@ void PlayerLogic::execute()
 		m_animation->playAnimation("main", true);
 	}
 
-	// Hats
+	
+}
 
-	if (s_input.e == 1)
+void PlayerLogic::onCollision(const CollisionEvent& collision)
+{
+	if (parent()->getCounter("state") == 0)
 	{
-		m_hatIndex = ++m_hatIndex % 3;
-		float xPos = (float)m_hatIndex * 128.0f;
-		m_renders[1]->setTextureOffset(xPos, 128.0f);
-		SpawnSystem::buildEntity("Ghost", 400.0f, 300.0f);
+		if (collision.collider->hasTag("mob"))
+		{
+			m_physics->setVelocity(0.0f, 0.0f);
+			m_renders[1]->setActive(false);
+			parent()->setCounter("state", 1);
+			m_deathCounter = 0;
+			m_animation->playAnimation("poof", false);
+
+			// Logic Swap
+
+			if (parent()->getLogics().size() > 1)
+			{
+				parent()->removeBackLogic();
+			}
+			auto newLogic = collision.collider->getComponent<BehaviorComponent>()->
+				getLogics()[0]->getLogicCopy();
+			newLogic->setParent(parent());
+			parent()->addLogicCopy(newLogic);
+			parent()->getLogics().back()->playerOpen();
+		}
 	}
 }
 
-void PlayerLogic::setInput(const InputEvent& event)
+void PlayerLogic::deathCycle()
 {
-	s_input = event;
+	if (m_animation->complete())
+	{
+		if (m_deathCounter < 55)
+		{
+			m_renders[0]->setActive(false);
+		}
+		else
+		{
+			m_renders[1]->setActive(true);
+			parent()->setCounter("state", 0);
+		}
+	}
+	if (++m_deathCounter == 50)
+	{
+		m_renders[0]->setActive(true);
+		m_animation->playAnimation("rpoof", false);
+	}
 }

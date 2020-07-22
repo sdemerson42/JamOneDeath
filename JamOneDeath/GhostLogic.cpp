@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Logger.h"
 #include "SpawnSystem.h"
+#include "RenderComponent.h"
 
 GhostLogic::GhostLogic(BehaviorComponent* parent) :
 	LogicBase{ parent }
@@ -11,6 +12,8 @@ GhostLogic::GhostLogic(BehaviorComponent* parent) :
 
 void GhostLogic::execute()
 {
+	if (parent()->getCounter("player") == 1) return;
+
 	m_counter = ++m_counter % 80;
 	if (m_counter == 0)
 	{
@@ -22,9 +25,19 @@ void GhostLogic::execute()
 
 void GhostLogic::onCollision(const CollisionEvent& collision)
 {
-	if (collision.collider->hasTag("Natty"))
+	if (collision.collider->hasTag("player"))
 	{
-		Logger::log("Natty KILLED me!");
 		SpawnSystem::destroyEntity(parent()->parent()->guid());
 	}
+}
+
+void GhostLogic::playerOpen()
+{
+	parent()->parent()->getComponent<PhysicsComponent>()->setSolid(false);
+	parent()->parent()->getComponents<RenderComponent>()[1]->setTextureOffset(128.0f, 128.0f);
+}
+
+void GhostLogic::playerClose()
+{
+	parent()->parent()->getComponent<PhysicsComponent>()->setSolid(true);
 }
