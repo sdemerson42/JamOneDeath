@@ -149,7 +149,6 @@
     <ClCompile Include="BehaviorSystem.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
-    <ClCompile Include="DuckShootLogic.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GhostLogic.cpp" />
@@ -162,7 +161,6 @@
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sim.cpp" />
     <ClCompile Include="SpawnSystem.cpp" />
-    <ClCompile Include="TestLogic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
@@ -173,7 +171,6 @@
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ConsoleLogger.h" />
-    <ClInclude Include="DuckShootLogic.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />
@@ -193,7 +190,6 @@
     <ClInclude Include="Sim.h" />
     <ClInclude Include="SpawnSystem.h" />
     <ClInclude Include="Systems.h" />
-    <ClInclude Include="TestLogic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

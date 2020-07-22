@@ -144,23 +144,41 @@ void PhysicsSystem::resolveTilemapCollisions()
 		auto pc = AutoList<PhysicsComponent>::get(i);
 		if (!pc->active()) continue;
 
+		// Bounds check
+
+		float leftBound = 0.0f;
+		float topBound = 0.0f;
+		float rightBound = (float)((Globals::tilemapWidth - 1) * Globals::tileWidth);
+		float bottomBound = (float)((Globals::tilemapHeight - 1) * Globals::tileHeight);
+
+		auto oldPosition = pc->parent()->position();
+		auto velocity = pc->velocity();
+		float newX = oldPosition.x + pc->colliderOffset().x + velocity.x;
+		float newY = oldPosition.y + pc->colliderOffset().y + velocity.y;
+
+		if (newX < leftBound || newX > rightBound) pc->setVelocity(0.0f, velocity.y);
+		velocity = pc->velocity();
+		if (newY < topBound || newY > bottomBound) pc->setVelocity(velocity.x, 0.0f);
+
 		// Resolve tilemap collisions direction by direction
 
 		// Dirty positioning... fix later
-		auto oldPosition = pc->parent()->position();
-		pc->parent()->addPosition(pc->velocity().x, 0.0f);
-		if (tileOverlap(pc))
+		
+		pc->parent()->addPosition(velocity.x, 0.0f);
+		if (tileOverlap(pc) && pc->solid())
 		{
 			pc->parent()->setPosition(oldPosition);
-			pc->setVelocity(0.0f, pc->velocity().y);
+			pc->setVelocity(0.0f, velocity.y);
 		}
 		
-		pc->parent()->addPosition(0.0f, pc->velocity().y);
-		if (tileOverlap(pc))
+		velocity = pc->velocity();
+
+		pc->parent()->addPosition(0.0f, velocity.y);
+		if (tileOverlap(pc) && pc->solid())
 		{
 			pc->parent()->setPosition(pc->parent()->position().x,
 				oldPosition.y);
-			pc->setVelocity(pc->velocity().x, 0.0f);
+			pc->setVelocity(velocity.x, 0.0f);
 		}
 	}
 }

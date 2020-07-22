@@ -57,9 +57,6 @@
     <ClCompile Include="LogicBase.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
-    <ClCompile Include="TestLogic.cpp">
-      <Filter>Logic</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicsSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -79,9 +76,6 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="GhostLogic.cpp">
-      <Filter>Logic</Filter>
-    </ClCompile>
-    <ClCompile Include="DuckShootLogic.cpp">
       <Filter>Logic</Filter>
     </ClCompile>
     <ClCompile Include="SpawnSystem.cpp">
@@ -131,9 +125,6 @@
     <ClInclude Include="BehaviorSystem.h">
       <Filter>Systems</Filter>
     </ClInclude>
-    <ClInclude Include="TestLogic.h">
-      <Filter>Logic</Filter>
-    </ClInclude>
     <ClInclude Include="LogicBase.h">
       <Filter>Logic</Filter>
     </ClInclude>
@@ -168,9 +159,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="GhostLogic.h">
-      <Filter>Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="DuckShootLogic.h">
       <Filter>Logic</Filter>
     </ClInclude>
     <ClInclude Include="SpawnSystem.h">
