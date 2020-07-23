@@ -62,7 +62,9 @@ void PlayerLogic::onCollision(const CollisionEvent& collision)
 	{
 		if (collision.collider->hasTag("mob"))
 		{
+			parent()->parent()->setPosition(collision.collider->position());
 			m_physics->setVelocity(0.0f, 0.0f);
+			m_physics->setActive(false);
 			m_renders[1]->setActive(false);
 			parent()->setCounter("state", 1);
 			m_deathCounter = 0;
@@ -72,6 +74,7 @@ void PlayerLogic::onCollision(const CollisionEvent& collision)
 
 			if (parent()->getLogics().size() > 1)
 			{
+				parent()->getLogics()[1]->playerClose();
 				parent()->removeBackLogic();
 			}
 			auto newLogic = collision.collider->getComponent<BehaviorComponent>()->
@@ -94,6 +97,7 @@ void PlayerLogic::deathCycle()
 		else
 		{
 			m_renders[1]->setActive(true);
+			m_physics->setActive(true);
 			parent()->setCounter("state", 0);
 		}
 	}

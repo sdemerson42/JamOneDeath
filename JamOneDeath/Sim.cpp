@@ -87,6 +87,7 @@ void Sim::buildEntities()
 
 	SpawnSystem::buildEntity("Natty", 100.0f, 200.0f);
 	SpawnSystem::buildEntity("Ghost", 400.0f, 300.0f);
+	SpawnSystem::buildEntity("Duck", 300.0f, 700.0f);
 	
 	// END TEST
 }

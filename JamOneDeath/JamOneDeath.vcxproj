@@ -150,6 +150,7 @@
     <ClCompile Include="BehaviorSystem.cpp" />
     <ClCompile Include="ComponentBase.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
+    <ClCompile Include="DuckLogic.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GhostLogic.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="ComponentBase.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ConsoleLogger.h" />
+    <ClInclude Include="DuckLogic.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />

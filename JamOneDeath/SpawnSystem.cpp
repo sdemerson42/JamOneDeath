@@ -2,6 +2,7 @@
 #include "Components.h"
 #include "PlayerLogic.h"
 #include "GhostLogic.h"
+#include "DuckLogic.h"
 #include <algorithm>
 
 
@@ -76,7 +77,7 @@ void SpawnSystem::buildGhost(float posX, float posY)
 {
 	s_entities.push_back(std::make_shared<Entity>());
 	Entity& e2 = *s_entities.back();
-	e2.setPosition(posX, posX);
+	e2.setPosition(posX, posY);
 	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
 		0.0f, 256.0f, 128.0f, 128.0f);
 	auto pc2 = e2.addComponent<PhysicsComponent>(false, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
@@ -89,6 +90,29 @@ void SpawnSystem::buildGhost(float posX, float posY)
 			sf::Vector2f{ 0.0f, 256.0f },
 			sf::Vector2f{ 256.0f, 256.0f }},
 		6);
+	ac2->playAnimation("main", true);
+
+	e2.addTag("mob");
+	e2.addTag("ghost");
+}
+
+void SpawnSystem::buildDuck(float posX, float posY)
+{
+	s_entities.push_back(std::make_shared<Entity>());
+	Entity& e2 = *s_entities.back();
+	e2.setPosition(posX, posY);
+	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
+		0.0f, 256.0f, 128.0f, 128.0f);
+	auto pc2 = e2.addComponent<PhysicsComponent>(true, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
+	auto bc2 = e2.addComponent<BehaviorComponent>();
+	bc2->addLogic<DuckLogic>();
+	auto ac2 = e2.addComponent<AnimationComponent>();
+	ac2->addAnimation("main", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 0.0f, 384.0f },
+			sf::Vector2f{ 128.0f, 384.0f },
+			sf::Vector2f{ 0.0f, 384.0f },
+			sf::Vector2f{ 256.0f, 384.0f }},
+		10);
 	ac2->playAnimation("main", true);
 
 	e2.addTag("mob");

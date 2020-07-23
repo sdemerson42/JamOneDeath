@@ -20,7 +20,8 @@ public:
 	static void buildEntity(const std::string& name, Args ...args)
 	{
 		if (name == "Natty") buildNatty(args...);
-		if (name == "Ghost") buildGhost(args...);
+		else if (name == "Ghost") buildGhost(args...);
+		else if (name == "Duck") buildDuck(args...);
 	}
 
 	static void destroyEntity(unsigned int guid)
@@ -34,4 +35,5 @@ private:
 
     static void buildNatty(float posX, float posY);
 	static void buildGhost(float posX, float posY);
+	static void buildDuck(float posX, float posY);
 };
