@@ -60,15 +60,19 @@ void PlayerLogic::onCollision(const CollisionEvent& collision)
 {
 	if (parent()->getCounter("state") == 0)
 	{
+
+		if (collision.collider->hasTag("eproj") || collision.collider->hasTag("mob"))
+		{
+			m_animation->playAnimation("poof", false);
+			m_physics->setVelocity(0.0f, 0.0f);
+			m_physics->setActive(false);
+			parent()->setCounter("state", 1);
+			m_deathCounter = 0;
+			m_renders[1]->setActive(false);
+		}
 		if (collision.collider->hasTag("mob"))
 		{
 			parent()->parent()->setPosition(collision.collider->position());
-			m_physics->setVelocity(0.0f, 0.0f);
-			m_physics->setActive(false);
-			m_renders[1]->setActive(false);
-			parent()->setCounter("state", 1);
-			m_deathCounter = 0;
-			m_animation->playAnimation("poof", false);
 
 			// Logic Swap
 

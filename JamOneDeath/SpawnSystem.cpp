@@ -139,5 +139,6 @@ Entity* SpawnSystem::buildFireball()
 	ac2->playAnimation("main", true);
 
 	e2.addTag("fireball");
+	e2.addTag("eproj");
 	return &e2;
 }
