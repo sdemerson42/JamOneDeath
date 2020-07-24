@@ -4,6 +4,7 @@
 #include "EventHandler.h"
 #include "Events.h"
 #include "SFML/System.hpp"
+#include "Entity.h"
 
 class PhysicsComponent;
 
@@ -21,6 +22,7 @@ private:
 	};
 
 	SetTilemapEvent m_tilemapData;
+	Entity m_tileCollider;
 
 	void resolveEntityCollisions();
 	bool detectCollision(Collision* c);

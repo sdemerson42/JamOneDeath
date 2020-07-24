@@ -153,6 +153,7 @@
     <ClCompile Include="DuckLogic.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="FireballLogic.cpp" />
     <ClCompile Include="GhostLogic.cpp" />
     <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="JamOneDeath.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="EventBase.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="Events.h" />
+    <ClInclude Include="FireballLogic.h" />
     <ClInclude Include="GhostLogic.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="ILogger.h" />

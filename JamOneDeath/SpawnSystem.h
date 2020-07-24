@@ -16,12 +16,17 @@ public:
 	}
 	void execute() override;
 	
-	template<typename ...Args>
-	static void buildEntity(const std::string& name, Args ...args)
+	static Entity* buildEntity(const std::string& name, float posX, float posY)
 	{
-		if (name == "Natty") buildNatty(args...);
-		else if (name == "Ghost") buildGhost(args...);
-		else if (name == "Duck") buildDuck(args...);
+		Entity* r = nullptr;
+		if (name == "Natty") r = buildNatty();
+		else if (name == "Ghost") r = buildGhost();
+		else if (name == "Duck") r = buildDuck();
+		else if (name == "Fireball") r = buildFireball();
+
+		if (r) r->setPosition(posX, posY);
+
+		return r;
 	}
 
 	static void destroyEntity(unsigned int guid)
@@ -33,7 +38,8 @@ private:
 	static std::vector<unsigned int> s_guids;
 	static std::vector<std::shared_ptr<Entity>>* s_simEntities;
 
-    static void buildNatty(float posX, float posY);
-	static void buildGhost(float posX, float posY);
-	static void buildDuck(float posX, float posY);
+    static Entity* buildNatty();
+	static Entity* buildGhost();
+	static Entity* buildDuck();
+	static Entity* buildFireball();
 };

@@ -3,6 +3,7 @@
 #include "PlayerLogic.h"
 #include "GhostLogic.h"
 #include "DuckLogic.h"
+#include "FireballLogic.h"
 #include <algorithm>
 
 
@@ -35,16 +36,15 @@ void SpawnSystem::execute()
 	s_entities.clear();
 }
 
-void SpawnSystem::buildNatty(float xPos, float yPos)
+Entity* SpawnSystem::buildNatty()
 {
 	s_entities.push_back(std::make_shared<Entity>());
 	Entity& e = *s_entities.back();
-	e.setPosition(xPos, yPos);
 	auto rc = e.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
 		0.0f, 0.0f, 128.0f, 128.0f);
 	rc = e.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
 		0.0f, 128.0f, 128.0f, 128.0f);
-	auto pc = e.addComponent<PhysicsComponent>(true, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
+	auto pc = e.addComponent<PhysicsComponent>(true, 32.0f, 32.0f, 64.0f, 96.0f, 1.0f);
 	auto ac = e.addComponent<AnimationComponent>();
 	ac->addAnimation("main", std::vector<sf::Vector2f>{
 		sf::Vector2f{ 0.0f, 0.0f },
@@ -71,16 +71,16 @@ void SpawnSystem::buildNatty(float xPos, float yPos)
 	auto bc = e.addComponent<BehaviorComponent>();
 	bc->addLogic<PlayerLogic>();
 	e.addTag("player");
+	return &e;
 }
 
-void SpawnSystem::buildGhost(float posX, float posY)
+Entity* SpawnSystem::buildGhost()
 {
 	s_entities.push_back(std::make_shared<Entity>());
 	Entity& e2 = *s_entities.back();
-	e2.setPosition(posX, posY);
 	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
 		0.0f, 256.0f, 128.0f, 128.0f);
-	auto pc2 = e2.addComponent<PhysicsComponent>(false, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
+	auto pc2 = e2.addComponent<PhysicsComponent>(false, 32.0f, 32.0f, 64.0f, 96.0f, 1.0f);
 	auto bc2 = e2.addComponent<BehaviorComponent>();
 	bc2->addLogic<GhostLogic>();
 	auto ac2 = e2.addComponent<AnimationComponent>();
@@ -94,16 +94,16 @@ void SpawnSystem::buildGhost(float posX, float posY)
 
 	e2.addTag("mob");
 	e2.addTag("ghost");
+	return &e2;
 }
 
-void SpawnSystem::buildDuck(float posX, float posY)
+Entity* SpawnSystem::buildDuck()
 {
 	s_entities.push_back(std::make_shared<Entity>());
 	Entity& e2 = *s_entities.back();
-	e2.setPosition(posX, posY);
 	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
 		0.0f, 256.0f, 128.0f, 128.0f);
-	auto pc2 = e2.addComponent<PhysicsComponent>(true, 10.0f, 100.0f, 108.0f, 28.0f, 1.0f);
+	auto pc2 = e2.addComponent<PhysicsComponent>(true, 32.0f, 32.0f, 64.0f, 96.0f, 1.0f);
 	auto bc2 = e2.addComponent<BehaviorComponent>();
 	bc2->addLogic<DuckLogic>();
 	auto ac2 = e2.addComponent<AnimationComponent>();
@@ -117,4 +117,27 @@ void SpawnSystem::buildDuck(float posX, float posY)
 
 	e2.addTag("mob");
 	e2.addTag("ghost");
+	return &e2;
+}
+
+Entity* SpawnSystem::buildFireball()
+{
+	s_entities.push_back(std::make_shared<Entity>());
+	Entity& e2 = *s_entities.back();
+	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
+		0.0f, 256.0f, 64.0f, 64.0f);
+	auto pc2 = e2.addComponent<PhysicsComponent>(true, 10.0f, 10.0f, 44.0f, 44.0f, 1.0f);
+	auto bc2 = e2.addComponent<BehaviorComponent>();
+	bc2->addLogic<FireballLogic>();
+	auto ac2 = e2.addComponent<AnimationComponent>();
+	ac2->addAnimation("main", std::vector<sf::Vector2f>{
+		sf::Vector2f{ 0.0f, 640.0f },
+			sf::Vector2f{ 64.0f, 640.0f },
+			sf::Vector2f{ 128, 640.0f },
+			sf::Vector2f{ 192.0f, 640.0f }},
+		5);
+	ac2->playAnimation("main", true);
+
+	e2.addTag("fireball");
+	return &e2;
 }

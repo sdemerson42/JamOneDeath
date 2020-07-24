@@ -11,6 +11,7 @@
 PhysicsSystem::PhysicsSystem()
 {
 	registerFunc(this, &PhysicsSystem::onSetTilemap);
+	m_tileCollider.addTag("tile");
 }
 
 void PhysicsSystem::execute()
@@ -162,6 +163,8 @@ void PhysicsSystem::resolveTilemapCollisions()
 
 		// Resolve tilemap collisions direction by direction
 
+		bool didCollide = false;
+
 		// Dirty positioning... fix later
 		
 		pc->parent()->addPosition(velocity.x, 0.0f);
@@ -169,6 +172,7 @@ void PhysicsSystem::resolveTilemapCollisions()
 		{
 			pc->parent()->setPosition(oldPosition);
 			pc->setVelocity(0.0f, velocity.y);
+			didCollide = true;
 		}
 		
 		velocity = pc->velocity();
@@ -179,6 +183,22 @@ void PhysicsSystem::resolveTilemapCollisions()
 			pc->parent()->setPosition(pc->parent()->position().x,
 				oldPosition.y);
 			pc->setVelocity(velocity.x, 0.0f);
+			didCollide = true;
+		}
+
+		if (didCollide)
+		{
+			auto bbc = pc->parent()->getComponent<BehaviorComponent>();
+			if (bbc)
+			{
+				auto blogics = bbc->getLogics();
+				for (auto& sp : blogics)
+				{
+					CollisionEvent ce;
+					ce.collider = &m_tileCollider;
+					sp->onCollision(ce);
+				}
+			}
 		}
 	}
 }
