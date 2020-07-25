@@ -82,7 +82,8 @@ Entity* SpawnSystem::buildGhost()
 		0.0f, 256.0f, 128.0f, 128.0f);
 	auto pc2 = e2.addComponent<PhysicsComponent>(false, 32.0f, 32.0f, 64.0f, 96.0f, 1.0f);
 	auto bc2 = e2.addComponent<BehaviorComponent>();
-	bc2->addLogic<GhostLogic>();
+	auto logic = bc2->addLogic<GhostLogic>();
+	logic->setTarget(s_entities[0].get());	// Terrible hack, but jam time is running out
 	auto ac2 = e2.addComponent<AnimationComponent>();
 	ac2->addAnimation("main", std::vector<sf::Vector2f>{
 		sf::Vector2f{ 0.0f, 256.0f },
@@ -140,5 +141,15 @@ Entity* SpawnSystem::buildFireball()
 
 	e2.addTag("fireball");
 	e2.addTag("eproj");
+	return &e2;
+}
+
+Entity* SpawnSystem::buildGrave()
+{
+	s_entities.push_back(std::make_shared<Entity>());
+	Entity& e2 = *s_entities.back();
+	auto rc2 = e2.addComponent<RenderComponent>("GFX/Main.png", 0.0f, 0.0f,
+		512.0f, 512.0f, 128.0f, 128.0f);
+	e2.addTag("grave");
 	return &e2;
 }

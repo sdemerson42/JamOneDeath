@@ -19,9 +19,10 @@ public:
 	{
 	}
 	template<typename T, typename ...Args>
-	void addLogic(Args ...args)
+	T* addLogic(Args ...args)
 	{
 		m_logics.push_back(std::make_shared<T>(this, args...));
+		return static_cast<T*>(m_logics.back().get());
 	}
 
 	void addLogicCopy(LogicBase* copy)

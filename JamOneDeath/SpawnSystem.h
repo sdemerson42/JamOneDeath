@@ -23,6 +23,7 @@ public:
 		else if (name == "Ghost") r = buildGhost();
 		else if (name == "Duck") r = buildDuck();
 		else if (name == "Fireball") r = buildFireball();
+		else if (name == "Grave") r = buildGrave();
 
 		if (r) r->setPosition(posX, posY);
 
@@ -42,4 +43,5 @@ private:
 	static Entity* buildGhost();
 	static Entity* buildDuck();
 	static Entity* buildFireball();
+	static Entity* buildGrave();
 };

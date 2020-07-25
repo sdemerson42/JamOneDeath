@@ -17,6 +17,7 @@ public:
 	{
 		return static_cast<LogicBase*>(new GhostLogic{ *this });
 	}
+	void setTarget(Entity* target);
 private:
-	int m_counter = -1;
+	Entity* m_target;
 };
